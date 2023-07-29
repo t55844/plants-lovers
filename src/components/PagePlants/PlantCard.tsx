@@ -39,9 +39,9 @@ export default function PlantCard(props: PlantCardProps) {
                 <img src={imgSrc()} alt={plant.common_name} className="w-full h-40 object-cover rounded-md mb-2" />
                 <h3 className="text-lg font-bold mb-2">{plant.common_name}</h3>
                 <p className="text-gray-600 text-sm mb-4">{plant.scientific_name}</p>
-                <p className="text-gray-800 text-sm before:first-letter:# ">{plant.sunlight}</p>
-                <p className="text-gray-800 text-sm before:first-letter:# ">{plant.watering}</p>
-                <p className="text-gray-800 text-sm before:first-letter:# ">{plant.cycle.split('')}</p>
+                <p className="text-gray-800 text-sm ">{'# ' + plant.sunlight}</p>
+                <p className="text-gray-800 text-sm ">{'# ' + plant.watering}</p>
+                <p className="text-gray-800 text-sm ">{'# ' + plant.cycle}</p>
             </div>
 
         </div>
