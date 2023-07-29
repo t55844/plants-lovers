@@ -1,12 +1,14 @@
 import './App.css'
-import Footer from './components/Home/Footer'
-import PageHome from './components/Home/PageHome'
+import Footer from './components/PageHome/Footer'
+import PageHome from './components/PageHome/PageHome'
+import PagePlants from './components/PagePlants/PagePlants'
 
 export default function App() {
 
   return (
-    <div className='bg-lime-200 w-screen h-screen m-auto md:p-10'>
+    <div >
       <PageHome />
+      <PagePlants />
       <Footer />
     </div>
   )
