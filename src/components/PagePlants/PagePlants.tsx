@@ -1,19 +1,13 @@
 import React, { useEffect, useState } from "react";
 import PlantsList from "./Plantlist";
-const apiKey = import.meta.env.VITE_PLANTS_KEY;
+import { getPlantsInfos } from "./requestHandler";
 
 //this component is responsible for taking the list of plants and passing it to the PlantsList to be rendered
 export default function PagePlants() {
     const [plants, setPlants] = useState<Plant[]>()
 
-    async function getPlantsInfos(): Promise<Plant[]> {
-        //make the fecth to the API
-        const response = await fetch(`https://perenual.com/api/species-list?page=1&key=${apiKey}`)
-        const json = await response.json()
-        return json.data
-    }
-
     useEffect(() => {
+
         getPlantsInfos()
             .then(plantsArray => setPlants(plantsArray))
     }, [])
