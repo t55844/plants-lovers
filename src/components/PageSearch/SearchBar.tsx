@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Search } from "@mui/icons-material";
 const apiKey = import.meta.env.VITE_PLANTS_KEY;
 

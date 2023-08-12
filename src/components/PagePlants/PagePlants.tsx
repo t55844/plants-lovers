@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import PlantsList from "./Plantlist";
 import { getPlantsInfos } from "./requestHandler";
 
 //this component is responsible for taking the list of plants and passing it to the PlantsList to be rendered
 export default function PagePlants() {
-    const [plants, setPlants] = useState<Plant[]>()
+    const [plants, setPlants] = useState<Plant[]>([])
 
     useEffect(() => {
 

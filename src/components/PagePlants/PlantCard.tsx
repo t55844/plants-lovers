@@ -1,24 +1,7 @@
-import React from 'react';
+import { Plant } from "./PagePlants";
 
 interface PlantCardProps {
-    plant: {
-        id: number;
-        default_image: {
-            image_id: number;
-            license: number;
-            license_name: string;
-            license_url: string;
-            original_url: string;
-            regular_url: string;
-            medium_url: string;
-            small_url: string;
-            thumbnail: string;
-        }; common_name: string;
-        scientific_name: string;
-        cycle: string;
-        watering: string;
-        sunlight: string[];
-    }
+    plant: Plant
 }
 
 //this component receives an object from the array of plants and assembles a card with information about

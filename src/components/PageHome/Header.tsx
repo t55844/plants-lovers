@@ -1,4 +1,3 @@
-import React from "react";
 import image from '../../assets/summer-plants-flyer.png'
 export default function Header() {
     return (

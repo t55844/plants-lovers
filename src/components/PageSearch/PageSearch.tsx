@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import FilterBox from "./FilterBox";
 import { Plant } from "../PagePlants/PagePlants";
 import PlantsList from "../PagePlants/Plantlist";

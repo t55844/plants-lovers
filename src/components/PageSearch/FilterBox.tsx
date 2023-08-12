@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import CheckboxFilter from './CheckboxFilter';
 
 const apiKey = import.meta.env.VITE_PLANTS_KEY;

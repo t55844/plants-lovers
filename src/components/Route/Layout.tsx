@@ -7,6 +7,9 @@ const Layout = () => {
             <nav className="bg-teal-500 py-4">
                 <ul className="flex space-x-4 justify-center">
                     <li>
+                        <img src="/logo.jpg" className=" w-10 h-10 bg-transparent rounded-xl" alt="" />
+                    </li>
+                    <li>
                         <Link
                             to="/"
                             className="text-white px-4 py-2 rounded hover:bg-teal-600"

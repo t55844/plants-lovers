@@ -1,4 +1,4 @@
-import React, { ReactNode, useState } from 'react';
+import { ReactNode, useState } from 'react';
 
 const Modal = ({ children, buttonTitle }: { children: ReactNode, buttonTitle: string }) => {
     const [isOpen, setIsOpen] = useState<boolean>(false)

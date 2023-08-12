@@ -4,7 +4,7 @@ interface CheckboxFilterProps {
     label: string
     options: string[]
     selectedValues: any
-    handleChange: (option: string) => void
+    handleChange: (option: any) => void
 }
 
 const CheckboxFilter = ({ label, options, selectedValues, handleChange }: CheckboxFilterProps) => {
