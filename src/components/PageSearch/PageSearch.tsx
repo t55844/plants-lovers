@@ -3,7 +3,7 @@ import FilterBox from "./FilterBox";
 import { Plant } from "../PagePlants/PagePlants";
 import PlantsList from "../PagePlants/Plantlist";
 import { getPlantsInfos } from "../PagePlants/requestHandler";
-import Modal from "../HandlersComponentToShowData/Modal";
+import Modal from "../HandlersComponent/Modal";
 import SearchBar from "./SearchBar";
 
 export default function PageSearch() {
@@ -29,11 +29,11 @@ export default function PageSearch() {
             .then(plants => setPlants(plants))
     }, [url])
     return (
-        <>
+        <div className="h-screen">
             <h2 className="text-teal-400 text-xl mx-auto text-center my-3 border-b-4 border-teal-700 md:w-1/2">Plant Search Page</h2>
             <SearchBar getInputData={setUrl} />
             <Modal children={<FilterBox returnUrl={setUrl} />} buttonTitle="Filter" />
             <PlantsList plants={plants} />
-        </>
+        </div>
     )
 }

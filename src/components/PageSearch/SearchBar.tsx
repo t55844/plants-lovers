@@ -14,7 +14,7 @@ export default function SearchBar(props: { getInputData: (value: string) => void
     }, [searchInput])
 
     return (
-        <div className="flex items-center mx-auto my-2 bg-teal-200 w-11/12 md:w-1/2 rounded-md p-2">
+        <div className="flex items-center mx-auto my-2 bg-lime-200 w-11/12 md:w-1/2 rounded-md p-2">
             <input
                 type="text"
                 value={searchInput}

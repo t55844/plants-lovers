@@ -25,6 +25,14 @@ const Layout = () => {
                             Search
                         </Link>
                     </li>
+                    <li>
+                        <Link
+                            to="/user"
+                            className="text-white px-4 py-2 rounded hover:bg-teal-600"
+                        >
+                            User
+                        </Link>
+                    </li>
                 </ul>
             </nav>
 
