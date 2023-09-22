@@ -1,6 +1,7 @@
-import React from 'react';
-import { useForm, SubmitHandler } from 'react-hook-form';
-import ButtonGener from '../HandlersComponent/ButtonGener';
+import { useForm } from "react-hook-form";
+import ButtonGener from "../HandlersComponent/ButtonGener";
+import supabase from "../../js/supabase";
+import InputFormGener from "./InputFormGener";
 
 export default function LoginForm() {
   const {
@@ -9,46 +10,51 @@ export default function LoginForm() {
     formState: { errors },
   } = useForm<{ email: string; password: string }>();
 
-  const handleLogin = (data: { email: string; password: string }) => {
+  const handleLogin = async (data: { email: string; password: string }) => {
     // Handle login logic here
-    console.log('Logging in with a:', data);
+    try {
+      const {
+        data: { user, session },
+        error,
+      } = await supabase.auth.signInWithPassword({
+        email: data.email,
+        password: data.password,
+      });
+
+      if (error) {
+        console.error("Login error:", error.message);
+      } else {
+        console.log("Logged in:", user, session);
+        // You can redirect the user or perform other actions on successful login
+      }
+    } catch (error) {
+      console.error("Login error:", error.message);
+    }
   };
 
   return (
     <form onSubmit={handleSubmit(handleLogin)}>
-      <div className="mb-4">
-        <label htmlFor="email" className="block mb-1">
-          Email
-        </label>
-        <input
-          type="email"
-          id="email"
-          {...register('email', { required: 'Email is required' })}
-          className="w-full border rounded-lg p-2"
-        />
-        {errors.email && <p className="text-red-500">{errors.email.message}</p>}
-      </div>
-      <div className="mb-4">
-        <label htmlFor="password" className="block mb-1">
-          Password
-        </label>
-        <input
-          type="password"
-          id="password"
-          {...register('password', { required: 'Password is required' })}
-          className="w-full border rounded-lg p-2"
-        />
-        {errors.password && (
-          <p className="text-red-500">{errors.password.message}</p>
-        )}
-      </div>
-      <ButtonGener
-      width='w-full'
-      type='submit'
-      setAction={()=>{}}
-      title='Login'
+      <InputFormGener
+        label="Email"
+        nameId="email"
+        type="email"
+        errors={errors}
+        register={register("email", { required: "Email is required" })}
       />
-      
+
+      <InputFormGener
+        label="Password"
+        nameId="password"
+        type="password"
+        register={register("password", { required: "Password is required" })}
+        errors={errors}
+      />
+      <ButtonGener
+        width="w-full"
+        type="submit"
+        setAction={() => {}}
+        title="Login"
+      />
     </form>
   );
-};
+}

@@ -1,7 +1,7 @@
-import { useForm} from 'react-hook-form';
-import ButtonGener from '../HandlersComponent/ButtonGener';
-
-
+import { useForm } from "react-hook-form";
+import ButtonGener from "../HandlersComponent/ButtonGener";
+import supabase from "../../js/supabase"; // Import the Supabase client you initialized
+import InputFormGener from "./InputFormGener";
 
 export default function RegisterForm() {
   const {
@@ -15,79 +15,72 @@ export default function RegisterForm() {
     confirmPassword: string;
   }>();
 
-  const handleRegister = (data: {
+  const handleRegister = async (data: {
     name: string;
     email: string;
     password: string;
     confirmPassword: string;
   }) => {
     // Handle registration logic here
-    console.log('Registering with data:', data);
+    console.log(data);
+    /*try {
+        const { data:{user,session}, error } = await supabase.auth.signUp({
+          email: data.email,
+          password: data.password,
+        });
+  
+        if (error) {
+          console.error('Registration error:', error.message);
+        } else {
+          console.log('Registered and logged in:', user, session);
+          // You can redirect the user or perform other actions on successful registration
+        }
+      } catch (error) {
+        console.error('Registration error:', error.message);
+      }*/
   };
 
   return (
     <form onSubmit={handleSubmit(handleRegister)}>
-      <div className="mb-4">
-        <label htmlFor="name" className="block mb-1">
-          Name
-        </label>
-        <input
-          type="text"
-          id="name"
-          {...register('name', { required: 'Name is required' })}
-          className="w-full border rounded-lg p-2"
-        />
-        {errors.name && <p className="text-red-500">{errors.name.message}</p>}
-      </div>
-      <div className="mb-4">
-        <label htmlFor="email" className="block mb-1">
-          Email
-        </label>
-        <input
-          type="email"
-          id="email"
-          {...register('email', { required: 'Email is required' })}
-          className="w-full border rounded-lg p-2"
-        />
-        {errors.email && <p className="text-red-500">{errors.email.message}</p>}
-      </div>
-      <div className="mb-4">
-        <label htmlFor="password" className="block mb-1">
-          Password
-        </label>
-        <input
-          type="password"
-          id="password"
-          {...register('password', { required: 'Password is required' })}
-          className="w-full border rounded-lg p-2"
-        />
-        {errors.password && (
-          <p className="text-red-500">{errors.password.message}</p>
-        )}
-      </div>
-      <div className="mb-4">
-        <label htmlFor="confirmPassword" className="block mb-1">
-          Confirm Password
-        </label>
-        <input
-          type="password"
-          id="confirmPassword"
-          {...register('confirmPassword', {
-            required: 'Please confirm your password',
-          })}
-          className="w-full border rounded-lg p-2"
-        />
-        {errors.confirmPassword && (
-          <p className="text-red-500">{errors.confirmPassword.message}</p>
-        )}
-      </div>
+      <InputFormGener
+        label="Name"
+        nameId="name"
+        type="text"
+        register={register("name", { required: "Name is required" })}
+        errors={errors}
+      />
+
+      <InputFormGener
+        label="Email"
+        nameId="email"
+        type="email"
+        register={register("email", { required: "Email is required" })}
+        errors={errors}
+      />
+
+      <InputFormGener
+        label="Password"
+        nameId="password"
+        type="password"
+        register={register("password", { required: "Password is required" })}
+        errors={errors}
+      />
+
+      <InputFormGener
+        label="Confirm password"
+        nameId="confirmPassword"
+        type="password"
+        register={register("confirmPassword", {
+          required: "Confirm password is required",
+        })}
+        errors={errors}
+      />
       <ButtonGener
-      width='w-full'
-      type='submit'
-      title='Register'
-      setAction={()=>{}}
+        width="w-full"
+        type="submit"
+        title="Register"
+        setAction={() => {}}
       />
     </form>
   );
-};
-
+}
