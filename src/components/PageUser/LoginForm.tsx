@@ -1,7 +1,9 @@
 import { useForm } from "react-hook-form";
+import { useState } from "react";
 import ButtonGener from "../HandlersComponent/ButtonGener";
 import supabase from "../../js/supabase";
 import InputFormGener from "./InputFormGener";
+import RequisitionResponseBox from "../HandlersComponent/RequisitionResponseBox";
 
 export default function LoginForm() {
   const {
@@ -10,9 +12,17 @@ export default function LoginForm() {
     formState: { errors },
   } = useForm<{ email: string; password: string }>();
 
+  const [responseStatus, setResponseStatus] = useState<{
+    err: boolean;
+    show: boolean;
+    loding: boolean;
+    text: string;
+  }>({ err: false, show: false, loding: false, text: "" });
+
   const handleLogin = async (data: { email: string; password: string }) => {
     // Handle login logic here
     try {
+      setResponseStatus({ err: false, show: true, loding: true, text: "" });
       const {
         data: { user, session },
         error,
@@ -22,13 +32,29 @@ export default function LoginForm() {
       });
 
       if (error) {
-        console.error("Login error:", error.message);
+        setResponseStatus({
+          err: true,
+          show: true,
+          loding: false,
+          text: "can't login because password or email is invalid",
+        });
       } else {
         console.log("Logged in:", user, session);
+        setResponseStatus({
+          show: true,
+          err: false,
+          loding: false,
+          text: "you is authenticate with success",
+        });
         // You can redirect the user or perform other actions on successful login
       }
     } catch (error) {
-      console.error("Login error:", error.message);
+      setResponseStatus({
+        err: true,
+        show: true,
+        loding: false,
+        text: "can't login because password or email is invalid",
+      });
     }
   };
 
@@ -48,6 +74,12 @@ export default function LoginForm() {
         type="password"
         register={register("password", { required: "Password is required" })}
         errors={errors}
+      />
+      <RequisitionResponseBox
+        toShow={responseStatus.show}
+        Loading={responseStatus.loding}
+        error={responseStatus.err}
+        text={responseStatus.text}
       />
       <ButtonGener
         width="w-full"
