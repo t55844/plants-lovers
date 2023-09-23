@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import LoginForm from "./LoginForm";
 import RegisterForm from "./RegisterForm";
-import ButtonGener from "../HandlersComponent/ButtonGener";
+import ButtonGener from "../../HandlersComponent/ButtonGener";
 
 const AuthComponent: React.FC = () => {
   const [isLogin, setIsLogin] = useState(true);

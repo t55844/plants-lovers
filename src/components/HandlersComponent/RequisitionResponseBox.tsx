@@ -1,21 +1,19 @@
-import { useState, useEffect } from "react";
-
 // Import Tailwind CSS classes for styling
 import "tailwindcss/tailwind.css";
 
 export default function RequisitionResponseBox(props: {
   text: string;
   toShow: boolean;
-  Loading: boolean;
+  loading: boolean;
   error: boolean;
 }) {
-  const { text, toShow, Loading, error } = props;
+  const { text, toShow, loading, error } = props;
 
   if (!toShow) return null;
 
   return (
     <div className="w-10/12 mx-auto p-4 ">
-      {Loading ? (
+      {loading ? (
         <div className="flex justify-center items-center">
           <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-gray-900"></div>
           <span className="ml-2">Loading...</span>

@@ -7,33 +7,33 @@ import Modal from "../HandlersComponent/Modal";
 import SearchBar from "./SearchBar";
 
 export default function PageSearch() {
-    const [url, setUrl] = useState<string>('')
-    const [plants, setPlants] = useState<Plant[]>([])
+  const [url, setUrl] = useState<string>("");
+  const [plants, setPlants] = useState<Plant[]>([]);
 
-    async function searchPlantsInfo(url: string): Promise<Plant[]> {
-        //make the request with the filter
+  async function searchPlantsInfo(url: string): Promise<Plant[]> {
+    //make the request with the filter
 
-        //but if no hass filters then get from the localStorage
-        if (url === '') {
-            getPlantsInfos()
-                .then(plants => setPlants(plants))
-        }
-        const response = await fetch(url)
-        const json = await response.json()
-        return json.data
+    //but if no hass filters then get from the localStorage
+    if (url === "") {
+      getPlantsInfos().then((plants) => setPlants(plants));
     }
+    const response = await fetch(url);
+    const json = await response.json();
+    return json.data;
+  }
 
-    useEffect(() => {
-        console.log(url)
-        searchPlantsInfo(url)
-            .then(plants => setPlants(plants))
-    }, [url])
-    return (
-        <div className="h-screen">
-            <h2 className="text-teal-400 text-xl mx-auto text-center my-3 border-b-4 border-teal-700 md:w-1/2">Plant Search Page</h2>
-            <SearchBar getInputData={setUrl} />
-            <Modal children={<FilterBox returnUrl={setUrl} />} buttonTitle="Filter" />
-            <PlantsList plants={plants} />
-        </div>
-    )
+  useEffect(() => {
+    console.log(url);
+    searchPlantsInfo(url).then((plants) => setPlants(plants));
+  }, [url]);
+  return (
+    <div className="h-auto md:h-screen">
+      <h2 className="text-teal-400 text-xl mx-auto text-center my-3 border-b-4 border-teal-700 md:w-1/2">
+        Plant Search Page
+      </h2>
+      <SearchBar getInputData={setUrl} />
+      <Modal children={<FilterBox returnUrl={setUrl} />} buttonTitle="Filter" />
+      <PlantsList plants={plants} />
+    </div>
+  );
 }

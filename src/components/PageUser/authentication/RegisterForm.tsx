@@ -1,16 +1,25 @@
 import { useForm } from "react-hook-form";
-import { useState } from "react";
-import ButtonGener from "../HandlersComponent/ButtonGener";
-import supabase from "../../js/supabase";
+import ButtonGener from "../../HandlersComponent/ButtonGener";
+import supabase from "../../../js/supabase"; // Import the Supabase client you initialized
 import InputFormGener from "./InputFormGener";
-import RequisitionResponseBox from "../HandlersComponent/RequisitionResponseBox";
+import RequisitionResponseBox from "../../HandlersComponent/RequisitionResponseBox";
+import { useState } from "react";
+import { setToken } from "../../../js/rudux/authSlice";
+import { useDispatch } from "react-redux";
 
-export default function LoginForm() {
+export default function RegisterForm() {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<{ email: string; password: string }>();
+  } = useForm<{
+    name: string;
+    email: string;
+    password: string;
+    confirmPassword: string;
+  }>();
+
+  const dispatch = useDispatch();
 
   const [responseStatus, setResponseStatus] = useState<{
     err: boolean;
@@ -19,14 +28,20 @@ export default function LoginForm() {
     text: string;
   }>({ err: false, show: false, loding: false, text: "" });
 
-  const handleLogin = async (data: { email: string; password: string }) => {
-    // Handle login logic here
+  const handleRegister = async (data: {
+    name: string;
+    email: string;
+    password: string;
+    confirmPassword: string;
+  }) => {
+    // Handle registration logic here
+    console.log(data);
     try {
       setResponseStatus({ err: false, show: true, loding: true, text: "" });
       const {
         data: { user, session },
         error,
-      } = await supabase.auth.signInWithPassword({
+      } = await supabase.auth.signUp({
         email: data.email,
         password: data.password,
       });
@@ -36,36 +51,38 @@ export default function LoginForm() {
           err: true,
           show: true,
           loding: false,
-          text: "can't login because password or email is invalid",
+          text: "can't register: " + error.message,
         });
       } else {
-        console.log("Logged in:", user, session);
+        dispatch(setToken(session));
+
         setResponseStatus({
-          show: true,
           err: false,
+          show: true,
           loding: false,
-          text: "you is authenticate with success",
+          text: "Register with success, user:" + user?.email,
         });
-        // You can redirect the user or perform other actions on successful login
+
+        // You can redirect the user or perform other actions on successful registration
       }
     } catch (error) {
       setResponseStatus({
         err: true,
         show: true,
         loding: false,
-        text: "can't login because password or email is invalid",
+        text: "can't register: " + error.message,
       });
     }
   };
 
   return (
-    <form onSubmit={handleSubmit(handleLogin)}>
+    <form onSubmit={handleSubmit(handleRegister)}>
       <InputFormGener
         label="Email"
         nameId="email"
         type="email"
-        errors={errors}
         register={register("email", { required: "Email is required" })}
+        errors={errors}
       />
 
       <InputFormGener
@@ -75,17 +92,27 @@ export default function LoginForm() {
         register={register("password", { required: "Password is required" })}
         errors={errors}
       />
+
+      <InputFormGener
+        label="Confirm password"
+        nameId="confirmPassword"
+        type="password"
+        register={register("confirmPassword", {
+          required: "Confirm password is required",
+        })}
+        errors={errors}
+      />
       <RequisitionResponseBox
         toShow={responseStatus.show}
-        Loading={responseStatus.loding}
+        loading={responseStatus.loding}
         error={responseStatus.err}
         text={responseStatus.text}
       />
       <ButtonGener
         width="w-full"
         type="submit"
+        title="Register"
         setAction={() => {}}
-        title="Login"
       />
     </form>
   );
