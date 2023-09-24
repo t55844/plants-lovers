@@ -10,7 +10,7 @@ const initialState: AuthState = {
 };
 
 const authSlice = createSlice({
-  name: 'auth',
+  name: 'auth-token',
   initialState,
   reducers: {
     setToken: (state, action: PayloadAction<string | null>) => {
