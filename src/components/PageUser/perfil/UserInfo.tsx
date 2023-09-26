@@ -6,12 +6,15 @@ import { RootState } from "../../../js/rudux/store";
 export default function UserInfo() {
   const auth = useSelector((state: RootState) => state.auth);
   console.log(auth);
-  const user = {
-    name: auth.token.user.email.match(/^(.*?)@/)[1],
-    email: auth.token.user.email,
-    favorites: [],
-    comments: [],
-  };
+  const user =
+    auth.token !== null
+      ? {
+          name: auth.token.user.email.match(/^(.*?)@/)[1],
+          email: auth.token.user.email,
+          favorites: [],
+          comments: [],
+        }
+      : { name: "", email: "", favorites: [], comments: [] };
   return (
     <div className="bg-lime-200 p-4 rounded-lg">
       <h2 className="text-xl font-semibold">User Information</h2>

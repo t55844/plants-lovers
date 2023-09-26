@@ -2,6 +2,14 @@ import { AnyAction, Dispatch } from "@reduxjs/toolkit";
 import { setToken } from "../../../js/rudux/authSlice";
 import supabase from "../../../js/supabase";
 
+
+interface registerUserData{
+  email: string;
+  password: string;
+  name: string;
+  confirmPassword: string;
+}
+
 export const handleLoginRegisterRequisition = async (
     data: any,
     login:boolean,
@@ -17,6 +25,7 @@ export const handleLoginRegisterRequisition = async (
     >
   ) => {
     // Handle login logic here
+    console.log(data)
     try {
       setResponseStatus({ err: false, show: true, loding: true, text: "" });
       const {
@@ -54,3 +63,5 @@ export const handleLoginRegisterRequisition = async (
       });
     }
   };
+
+  

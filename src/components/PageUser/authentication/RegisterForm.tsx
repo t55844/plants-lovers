@@ -50,6 +50,14 @@ export default function RegisterForm() {
       />
 
       <InputFormGener
+        label="Name"
+        nameId="name"
+        type="text"
+        register={register("name", { required: "Name is required" })}
+        errors={errors}
+      />
+
+      <InputFormGener
         label="Password"
         nameId="password"
         type="password"
