@@ -18,7 +18,11 @@ export default function PlantsList(props: { plants: Plant[] }) {
             >
               <PlantCard key={Math.random()} plant={plant} />
               {isLogued ? (
-                <FavoriteButton key={Math.random()} plant={plant} />
+                <FavoriteButton
+                  key={Math.random()}
+                  isUnfavorite={false}
+                  plant={plant}
+                />
               ) : null}
             </div>
           ))

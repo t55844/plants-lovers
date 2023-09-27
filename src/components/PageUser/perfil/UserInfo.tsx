@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { RootState } from "../../../js/rudux/store";
-import PlantCard from "../../PagePlants/PlantCard";
+import SectionFavorites from "./SectionFavorites";
 
 export default function UserInfo() {
   const auth = useSelector((state: RootState) => state.auth);
@@ -21,16 +21,7 @@ export default function UserInfo() {
           <p>Email: {user.email}</p>
         </div>
       </div>
-      <div className="w-full ">
-        <h3 className="text-lg font-semibold w-28 md:m-auto">Favorites</h3>
-        <ul className="flex flex-row justify-around flex-wrap items-center">
-          {user.favorites.map((favorite, index) => (
-            <div className="w-11/12 md:w-1/4 md:m-2">
-              <PlantCard plant={favorite} />
-            </div>
-          ))}
-        </ul>
-      </div>
+      <SectionFavorites user={user} />
     </>
   );
 }
