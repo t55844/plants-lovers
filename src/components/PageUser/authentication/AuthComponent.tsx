@@ -3,7 +3,7 @@ import LoginForm from "./LoginForm";
 import RegisterForm from "./RegisterForm";
 import ButtonGener from "../../HandlersComponent/ButtonGener";
 
-const AuthComponent: React.FC = () => {
+export default function AuthComponent() {
   const [isLogin, setIsLogin] = useState(true);
 
   return (
@@ -26,6 +26,4 @@ const AuthComponent: React.FC = () => {
       {isLogin ? <LoginForm /> : <RegisterForm />}
     </div>
   );
-};
-
-export default AuthComponent;
+}

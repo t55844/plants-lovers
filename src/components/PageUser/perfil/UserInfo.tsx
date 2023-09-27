@@ -1,18 +1,15 @@
 // UserInfo.tsx
-import React from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../js/rudux/store";
 
 export default function UserInfo() {
   const auth = useSelector((state: RootState) => state.auth);
-  console.log(auth);
   const user =
-    auth.token !== null
+    auth.token !== null && auth.userData !== null
       ? {
-          name: auth.token.user.email.match(/^(.*?)@/)[1],
-          email: auth.token.user.email,
-          favorites: [],
-          comments: [],
+          name: auth.userData?.email.match(/^(.*?)@/)[1],
+          email: auth.userData?.email,
+          favorites: auth.userData?.favorites,
         }
       : { name: "", email: "", favorites: [], comments: [] };
   return (
@@ -26,14 +23,6 @@ export default function UserInfo() {
           <ul>
             {user.favorites.map((favorite, index) => (
               <li key={index}>{favorite}</li>
-            ))}
-          </ul>
-        </div>
-        <div className="mt-2">
-          <h3 className="text-lg font-semibold">Comments</h3>
-          <ul>
-            {user.comments.map((comment, index) => (
-              <li key={index}>{comment}</li>
             ))}
           </ul>
         </div>

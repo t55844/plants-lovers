@@ -5,6 +5,8 @@ import InputFormGener from "./InputFormGener";
 import RequisitionResponseBox from "../../HandlersComponent/RequisitionResponseBox";
 import { useDispatch } from "react-redux";
 import { handleLoginRegisterRequisition } from "./authentication";
+import { getData } from "../../../js/supabase/functions";
+import { setUserData } from "../../../js/rudux/authSlice";
 
 export default function LoginForm() {
   const {
@@ -22,8 +24,8 @@ export default function LoginForm() {
     text: string;
   }>({ err: false, show: false, loding: false, text: "" });
 
-  const handleLogin = (data: any) =>
-    handleLoginRegisterRequisition(
+  const handleLogin = async (data: any) => {
+    const isLogued = await handleLoginRegisterRequisition(
       data,
       true,
       [
@@ -34,6 +36,10 @@ export default function LoginForm() {
       setResponseStatus
     );
 
+    const profile = !isLogued ? null : (await getData(data.email)).profile;
+
+    profile == null ? null : dispatch(setUserData(profile[0]));
+  };
   return (
     <form onSubmit={handleSubmit(handleLogin)}>
       <InputFormGener
