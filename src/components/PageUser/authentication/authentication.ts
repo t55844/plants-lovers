@@ -1,6 +1,7 @@
 import { AnyAction, Dispatch } from "@reduxjs/toolkit";
 import { setToken } from "../../../js/rudux/authSlice";
-import supabase from "../../../js/supabase";
+import supabase from "../../../js/supabase/supabase";
+import { saveData } from "../../../js/supabase/functions";
 
 
 interface registerUserData{
@@ -10,8 +11,13 @@ interface registerUserData{
   confirmPassword: string;
 }
 
+interface userDataToSaveOnTable{
+  email: string;
+  name: string;
+}
+
 export const handleLoginRegisterRequisition = async (
-    data: any,
+    data: registerUserData,
     login:boolean,
     menssages: [string, string],
     dispatch:Dispatch<AnyAction>,
@@ -23,9 +29,8 @@ export const handleLoginRegisterRequisition = async (
         text: string;
       }>
     >
-  ) => {
+  ):Promise<boolean> => {
     // Handle login logic here
-    console.log(data)
     try {
       setResponseStatus({ err: false, show: true, loding: true, text: "" });
       const {
@@ -43,6 +48,7 @@ export const handleLoginRegisterRequisition = async (
           loding: false,
           text: menssages[0],
         });
+        return false;
       } else {
         dispatch(setToken(session));
 
@@ -52,7 +58,8 @@ export const handleLoginRegisterRequisition = async (
           loding: false,
           text: menssages[1],
         });
-        // You can redirect the user or perform other actions on successful login
+
+        return true;
       }
     } catch (error) {
       setResponseStatus({
@@ -61,7 +68,7 @@ export const handleLoginRegisterRequisition = async (
         loding: false,
         text: menssages[0],
       });
+      return false;
     }
   };
 
-  

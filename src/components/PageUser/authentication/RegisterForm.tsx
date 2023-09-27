@@ -5,6 +5,7 @@ import RequisitionResponseBox from "../../HandlersComponent/RequisitionResponseB
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { handleLoginRegisterRequisition } from "./authentication";
+import { saveProfile } from "../../../js/supabase/functions";
 
 export default function RegisterForm() {
   const {
@@ -27,8 +28,8 @@ export default function RegisterForm() {
     text: string;
   }>({ err: false, show: false, loding: false, text: "" });
 
-  const handleRegister = (data: any) =>
-    handleLoginRegisterRequisition(
+  const handleRegister = async (data: any) => {
+    const isRegistered = await handleLoginRegisterRequisition(
       data,
       false,
       [
@@ -39,6 +40,15 @@ export default function RegisterForm() {
       setResponseStatus
     );
 
+    !isRegistered
+      ? null
+      : await saveProfile({
+          email: data.email,
+          imgProfile: "bloblobloblobloblobloblobloblobl",
+          favorites: [],
+        });
+  };
+
   return (
     <form onSubmit={handleSubmit(handleRegister)}>
       <InputFormGener
@@ -46,14 +56,6 @@ export default function RegisterForm() {
         nameId="email"
         type="email"
         register={register("email", { required: "Email is required" })}
-        errors={errors}
-      />
-
-      <InputFormGener
-        label="Name"
-        nameId="name"
-        type="text"
-        register={register("name", { required: "Name is required" })}
         errors={errors}
       />
 
