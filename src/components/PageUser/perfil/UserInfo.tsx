@@ -1,6 +1,6 @@
-// UserInfo.tsx
 import { useSelector } from "react-redux";
 import { RootState } from "../../../js/rudux/store";
+import PlantCard from "../../PagePlants/PlantCard";
 
 export default function UserInfo() {
   const auth = useSelector((state: RootState) => state.auth);
@@ -13,20 +13,24 @@ export default function UserInfo() {
         }
       : { name: "", email: "", favorites: [], comments: [] };
   return (
-    <div className="bg-lime-200 p-4 rounded-lg">
-      <h2 className="text-xl font-semibold">User Information</h2>
-      <div className="mt-4">
-        <p>Name: {user.name}</p>
-        <p>Email: {user.email}</p>
-        <div className="mt-2">
-          <h3 className="text-lg font-semibold">Favorites</h3>
-          <ul>
-            {user.favorites.map((favorite, index) => (
-              <li key={index}>{favorite}</li>
-            ))}
-          </ul>
+    <>
+      <div className="bg-lime-200 p-4 rounded-lg md:w-2/3 md:m-auto ">
+        <h2 className="text-xl font-semibold">User Information</h2>
+        <div className="mt-4">
+          <p>Name: {user.name}</p>
+          <p>Email: {user.email}</p>
         </div>
       </div>
-    </div>
+      <div className="w-full ">
+        <h3 className="text-lg font-semibold w-28 md:m-auto">Favorites</h3>
+        <ul className="flex flex-row justify-around flex-wrap items-center">
+          {user.favorites.map((favorite, index) => (
+            <div className="w-11/12 md:w-1/4 md:m-2">
+              <PlantCard plant={favorite} />
+            </div>
+          ))}
+        </ul>
+      </div>
+    </>
   );
 }

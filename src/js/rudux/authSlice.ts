@@ -35,10 +35,16 @@ const authSlice = createSlice({
     state.token = action.payload;
   },
   setUserData: (state, action: PayloadAction<userData | null>) => {
-    windowOn? null:localStorage.setItem('user-data', JSON.stringify(action.payload))
+
+    const user = {
+      ...action.payload,
+      favorites: action.payload?.favorites.map((item) => JSON.parse(item))
+    }
+
+    windowOn? null:localStorage.setItem('user-data', JSON.stringify(user))
     
     state.isLogged = true
-      state.userData = action.payload
+      state.userData = user
     },
     logOut: (state, action: PayloadAction<boolean>) => {
       windowOn? null:localStorage.removeItem('user-data')

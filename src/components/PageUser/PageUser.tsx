@@ -10,8 +10,8 @@ export default function PageUser() {
   console.log(auth);
 
   return (
-    <div className="h-auto md:h-screen p-2">
-      <LogOutButton />
+    <div className="h-auto  p-2">
+      {isLogged ? <LogOutButton /> : null}
       {isLogged ? <UserInfo /> : <AuthComponent />}
     </div>
   );
