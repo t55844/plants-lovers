@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
+import AOS from "aos";
+import "aos/dist/aos.css";
 import PageHome from "./components/PageHome/PageHome";
 import Layout from "./components/Route/Layout";
 import PageSearch from "./components/PageSearch/PageSearch";
@@ -9,6 +10,7 @@ import { Provider } from "react-redux";
 import store from "./js/rudux/store";
 
 export default function App() {
+  AOS.init();
   return (
     <BrowserRouter>
       <Provider store={store}>

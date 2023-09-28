@@ -16,7 +16,7 @@ export default function UserInfo() {
       : { name: "", email: "", favorites: [], comments: [] };
   return (
     <div className="flex flex-wrap ">
-      <div className="p-2 w-full md:h-1/2 md:w-1/4 flex border rounded-lg bg-lime-200  md:flex-col items-center justify-around md:justify-start">
+      <div className="p-2 w-full md:h-1/2 lg:h-auto lg:w-1/5 lg:ml-10 md:w-1/4 flex border rounded-lg bg-lime-200  md:flex-col items-center justify-around md:justify-start">
         <ImgPerfil />
         <Perfil user={user} />
       </div>

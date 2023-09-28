@@ -23,7 +23,15 @@ export default function PageSearch() {
   }
 
   useEffect(() => {
-    searchPlantsInfo(url).then((plants) => setPlants(plants));
+    const mockedPlants = localStorage.getItem("mocked-plants");
+    if (mockedPlants !== undefined && mockedPlants !== null) {
+      setPlants(JSON.parse(mockedPlants));
+    } else {
+      searchPlantsInfo(url).then((plants) => {
+        localStorage.setItem("mocked-plants", JSON.stringify(plants));
+        setPlants(plants);
+      });
+    }
   }, [url]);
   return (
     <div className="h-auto">
