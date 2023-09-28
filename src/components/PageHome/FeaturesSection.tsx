@@ -7,7 +7,7 @@ export default function FeaturesSection() {
         Discover Our Features
       </h2>
       <div
-        style={{ backgroundImage: `url('/src/assets/plant-bg.png')` }}
+        style={{ backgroundImage: `url('/plant-bg.png')` }}
         className={`
           bg-contains
           p-10
