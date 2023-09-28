@@ -5,16 +5,15 @@ interface PropsInputFormGener {
   nameId: string;
   type: string;
   register: any;
+  placeholder?: string;
   errors: FieldErrors<{
-    name: string;
     email: string;
     password: string;
-    confirmPassword: string;
   }>;
 }
 
 export default function InputFormGener(props: PropsInputFormGener) {
-  const { label, nameId, type, register, errors } = props;
+  const { label, nameId, type, register, errors, placeholder } = props;
 
   return (
     <div className="mb-4">
@@ -22,6 +21,7 @@ export default function InputFormGener(props: PropsInputFormGener) {
         {label}
       </label>
       <input
+        placeholder={placeholder}
         type={type}
         id={nameId}
         {...register}
