@@ -5,7 +5,8 @@ import RequisitionResponseBox from "../../HandlersComponent/RequisitionResponseB
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { handleLoginRegisterRequisition } from "./authentication";
-import { saveProfile } from "../../../js/supabase/functions";
+import { getData, saveProfile } from "../../../js/supabase/functions";
+import { setUserData } from "../../../js/rudux/authSlice";
 
 export default function RegisterForm() {
   const {
@@ -13,10 +14,8 @@ export default function RegisterForm() {
     handleSubmit,
     formState: { errors },
   } = useForm<{
-    name: string;
     email: string;
     password: string;
-    confirmPassword: string;
   }>();
 
   const dispatch = useDispatch();
@@ -44,9 +43,13 @@ export default function RegisterForm() {
       ? null
       : await saveProfile({
           email: data.email,
-          imgProfile: "bloblobloblobloblobloblobloblobl",
+          imgProfile: "",
           favorites: [],
         });
+
+    const profile = !isRegistered ? null : (await getData(data.email)).profile;
+
+    profile == null ? null : dispatch(setUserData(profile[0]));
   };
 
   return (
@@ -55,6 +58,7 @@ export default function RegisterForm() {
         label="Email"
         nameId="email"
         type="email"
+        placeholder="email@mail.com"
         register={register("email", { required: "Email is required" })}
         errors={errors}
       />
@@ -63,19 +67,14 @@ export default function RegisterForm() {
         label="Password"
         nameId="password"
         type="password"
-        register={register("password", { required: "Password is required" })}
-        errors={errors}
-      />
-
-      <InputFormGener
-        label="Confirm password"
-        nameId="confirmPassword"
-        type="password"
-        register={register("confirmPassword", {
-          required: "Confirm password is required",
+        placeholder="123456"
+        register={register("password", {
+          required: "Password is required ",
+          minLength: { message: "length min 6", value: 6 },
         })}
         errors={errors}
       />
+
       <RequisitionResponseBox
         toShow={responseStatus.show}
         loading={responseStatus.loding}
