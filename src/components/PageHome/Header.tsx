@@ -1,4 +1,4 @@
-import image from "../../assets/summer-plants-flyer.png";
+import image from "/summer-plants-flyer.png";
 export default function Header() {
   return (
     <div className="container py-8 flex flex-col items-center">
