@@ -1,27 +1,33 @@
-# React + TypeScript + Vite
+# React + TypeScript + Vite + Supabase + API https://perenual.com/docs/api
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Introduction
+Plantify is a web-based platform designed for plant lovers to explore, learn about, and keep track of their favorite plants. It's the perfect place to connect with fellow plant enthusiasts, discover new species, and build your own digital plant collection.
 
-Currently, two official plugins are available:
+Features
+1. Plant Catalog
+Explore a vast database of plants from around the world.
+Filter and search for plants based on various criteria such as species, family, and care requirements.
+2. User Profiles
+Create your personal user profile.
+Save your favorite plants to your profile for easy access and reference.
+Track the growth and care history of your own plants.
+3. Save in your perfil
+You can save the ones you like the most or the most
+ beautiful, whatever matters, and make them easy to find on your profile.
+5. Plant Care Tips
+Access detailed care guides and tips for each plant species.
+Receive reminders for watering, fertilizing, and other care routines.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Expanding the ESLint configuration
+![Capturar2](https://github.com/t55844/plants-lovers/assets/85409988/0d42e2e4-4c8b-4e79-b8b0-a672d6d1bf4e)
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
 
-- Configure the top-level `parserOptions` property like this:
+![Capturar1](https://github.com/t55844/plants-lovers/assets/85409988/3461f689-c2c2-47f2-9183-a3561d9d5506)
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+![Capturar3](https://github.com/t55844/plants-lovers/assets/85409988/707094eb-d52b-4fe6-85da-7fe3f3ae5589)
+
+
+
+License
+Plantify is licensed under the MIT License.
