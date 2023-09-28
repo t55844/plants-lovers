@@ -8,9 +8,8 @@ const notHaveData = (key:string) => localStorage.getItem(key) !== undefined && l
 
 interface userData{
   email:string
-  name:string
+  imgProfile:string
   favorites:string[]
-  comments:string[]
 }
 
 interface AuthState {

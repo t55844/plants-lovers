@@ -29,3 +29,29 @@ export const updateData = async (email:string,field:'imgProfile' | 'favorites',d
     
     return {error,profile}
   }
+
+export async function uploadProfileImg(email:string,file){
+    
+const { data, error } = await supabase
+  .storage
+  .from('imgProfile')
+  .upload(`${email}.png`, file, {
+    cacheControl: '3600',
+    upsert: false
+  })
+
+  return  await getImgProfile(data?.path,email)
+  }
+
+  export async function getImgProfile(path:string,email:string){
+    console.log(path);
+    
+    const { data, error } = await supabase
+    .storage
+    .from('imgProfile')
+    .getPublicUrl(path)
+
+    await updateData(email,'imgProfile',data?.publicUrl)
+    const update = await getData(email)
+    return update
+  }

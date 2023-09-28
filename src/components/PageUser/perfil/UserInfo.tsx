@@ -1,6 +1,8 @@
+import Perfil from "./Perfil";
+import SectionFavorites from "./SectionFavorites";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../js/rudux/store";
-import SectionFavorites from "./SectionFavorites";
+import ImgPerfil from "./ImgPerfil";
 
 export default function UserInfo() {
   const auth = useSelector((state: RootState) => state.auth);
@@ -13,15 +15,12 @@ export default function UserInfo() {
         }
       : { name: "", email: "", favorites: [], comments: [] };
   return (
-    <>
-      <div className="bg-lime-200 p-4 rounded-lg md:w-2/3 md:m-auto ">
-        <h2 className="text-xl font-semibold">User Information</h2>
-        <div className="mt-4">
-          <p>Name: {user.name}</p>
-          <p>Email: {user.email}</p>
-        </div>
+    <div className="flex flex-wrap ">
+      <div className="p-2 w-full md:h-1/2 md:w-1/4 flex border rounded-lg bg-lime-200  md:flex-col items-center justify-around md:justify-start">
+        <ImgPerfil />
+        <Perfil user={user} />
       </div>
       <SectionFavorites user={user} />
-    </>
+    </div>
   );
 }

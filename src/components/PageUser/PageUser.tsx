@@ -7,10 +7,9 @@ import LogOutButton from "./perfil/LogOutButton";
 export default function PageUser() {
   const auth = useSelector((state: RootState) => state.auth);
   const isLogged = auth.isLogged;
-  console.log(auth);
 
   return (
-    <div className="h-auto  p-2">
+    <div className="h-auto  md:p-2">
       {isLogged ? <LogOutButton /> : null}
       {isLogged ? <UserInfo /> : <AuthComponent />}
     </div>
