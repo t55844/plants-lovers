@@ -23,17 +23,19 @@ export default function PageSearch() {
   }
 
   useEffect(() => {
+    console.log(url);
     searchPlantsInfo(url).then((plants) => {
+      console.log(plants);
       setPlants(plants);
     });
   }, [url]);
   return (
     <div className="h-auto">
       <h2 className="text-teal-400 text-xl mx-auto text-center my-3 border-b-4 border-teal-700 md:w-1/2">
-        Plant Search Page
+        Pagina de Pesquisa
       </h2>
       <SearchBar getInputData={setUrl} />
-      <Modal children={<FilterBox returnUrl={setUrl} />} buttonTitle="Filter" />
+      <Modal children={<FilterBox returnUrl={setUrl} />} buttonTitle="Filtro" />
       <PlantsList plants={plants} />
     </div>
   );

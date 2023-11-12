@@ -26,7 +26,7 @@ const Layout = () => {
               to="/search"
               className="text-white px-4 py-2 rounded hover:bg-teal-600"
             >
-              Search
+              Pesquisa
             </Link>
           </li>
           <li>
@@ -34,7 +34,7 @@ const Layout = () => {
               to="/user"
               className="text-white px-4 py-2 rounded hover:bg-teal-600"
             >
-              User
+              Usuario
             </Link>
           </li>
         </ul>

@@ -47,14 +47,14 @@ export default function LoginForm() {
         nameId="email"
         type="email"
         errors={errors}
-        register={register("email", { required: "Email is required" })}
+        register={register("email", { required: "É preciso a Email " })}
       />
 
       <InputFormGener
-        label="Password"
+        label="Senha"
         nameId="password"
         type="password"
-        register={register("password", { required: "Password is required" })}
+        register={register("password", { required: "É preciso a senha" })}
         errors={errors}
       />
       <RequisitionResponseBox
@@ -67,7 +67,7 @@ export default function LoginForm() {
         width="w-full"
         type="submit"
         setAction={() => {}}
-        title="Login"
+        title="Entrar"
       />
     </form>
   );

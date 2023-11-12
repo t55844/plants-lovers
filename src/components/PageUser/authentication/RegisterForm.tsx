@@ -64,7 +64,7 @@ export default function RegisterForm() {
       />
 
       <InputFormGener
-        label="Password"
+        label="Senha"
         nameId="password"
         type="password"
         placeholder="123456"
@@ -84,7 +84,7 @@ export default function RegisterForm() {
       <ButtonGener
         width="w-full"
         type="submit"
-        title="Register"
+        title="Cadastrar"
         setAction={() => {}}
       />
     </form>

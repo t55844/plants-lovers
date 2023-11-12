@@ -4,7 +4,7 @@ export default function FeaturesSection() {
   return (
     <div className=" flex flex-col items-center mt-40">
       <h2 className="text-2xl md:text-3xl font-bold mb-4">
-        Discover Our Features
+        Descubra nossos recursos
       </h2>
       <div
         style={{ backgroundImage: `url('/plant-bg.png')` }}
@@ -16,23 +16,20 @@ export default function FeaturesSection() {
       >
         <CardInfoFeatures
           fade="fade-right"
-          title="1. Plant Identification"
+          title="1. Identificação de Planta"
           text="
-         Easily identify unknown plants with our AI-powered plant identification
-         tool. Snap a photo, and we'll do the rest!"
+          Identifique facilmente plantas desconhecidas com nossa ferramenta de identificação de plantas. Tire uma foto e nós faremos o resto!"
         />
         <CardInfoFeatures
           fade="fade-left"
-          title="2. Make your own acount"
-          text="Create your own account and customize your profile, with information
-        and things you like"
+          title="2. Faça sua própria conta"
+          text="Crie sua própria conta e personalize seu perfil, com informações e coisas que você gosta"
         />
         <CardInfoFeatures
           fade="fade-right"
-          title="3. Save your favorite ones"
+          title="3. Salve seus favoritos"
           text="
-        You can store the most wonderful plants or plants you've seen in the
-        past in our database"
+          Você pode armazenar as plantas mais maravilhosas ou plantas que você viu no passado em nosso banco de dados"
         />
       </div>
     </div>

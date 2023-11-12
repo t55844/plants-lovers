@@ -12,14 +12,14 @@ export default function AuthComponent() {
         <ButtonGener
           type="button"
           setAction={() => setIsLogin(true)}
-          title="Login"
+          title="Entrar"
           color={isLogin ? "bg-teal-500 text-white" : "bg-gray-300"}
         />
 
         <ButtonGener
           type="button"
           setAction={() => setIsLogin(false)}
-          title="Register"
+          title="Cadastrar"
           color={!isLogin ? "bg-teal-500 text-white" : "bg-gray-300"}
         />
       </div>
